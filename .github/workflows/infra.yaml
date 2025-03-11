@@ -30,7 +30,7 @@ jobs:
           aws-region: eu-west-1
 
       - name: Terraform Init
-        run: terraform init ./tf/
+        run: terraform init
         working-directory: ./tf
 
       - name: Terraform Validate

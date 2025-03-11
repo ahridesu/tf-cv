@@ -38,31 +38,17 @@ resource "aws_s3_bucket_ownership_controls" "website" {
 
 resource "aws_s3_bucket_policy" "website" {
   bucket = aws_s3_bucket.website.id
-  policy = <<POLICY
-{
-  "Version": "2012-10-17",
-  "Statement": [
-    {
-      "Effect": "Allow",
-      "Principal": "*",
-      "Action": "s3:GetObject",
-      "Resource": "arn:aws:s3:::cv-website-project/*"
-    },
-    {
-      "Effect": "Allow",
-      "Principal": {
-        "AWS":"arn:aws:iam::209479300792:user/cv-website-user"
-      },
-      "Action": [
-        "s3:PutObject",
-        "s3:GetObject",
-        "s3:DeleteObject"
-      ],
-      "Resource": "arn:aws:s3:::cv-website-project/*"
-    }
-  ]
-}
-POLICY
+  policy = jsonencode({
+    Version = "2012-10-17"
+    Statement = [
+      {
+        Effect    = "Allow"
+        Principal = "*"
+        Action    = "s3:GetObject"
+        Resource  = "${aws_s3_bucket.website.arn}/*"
+      }
+    ]
+  })
 }
 
 resource "aws_s3_object" "index" {
@@ -71,5 +57,10 @@ resource "aws_s3_object" "index" {
   bucket       = aws_s3_bucket.website.id
   key          = each.value  
   source       = "../website/${each.value}"
-  acl          = "public-read"
+
+  content_type = lookup({
+    "html" = "text/html",
+    "css"  = "text/css",
+    "js"   = "application/javascript"
+  }, substr(each.value, length(each.value)-2, 3), "application/octet-stream")
 }

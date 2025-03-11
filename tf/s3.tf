@@ -70,5 +70,4 @@ resource "aws_s3_object" "index" {
   key          = "index.html"  
   source       = "../website/index.html"  
   content_type = "text/html"
-  acl          = "public-read"
 }

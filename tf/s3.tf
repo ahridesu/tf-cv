@@ -51,8 +51,8 @@ POLICY
 
 resource "aws_s3_object" "index" {
   bucket       = aws_s3_bucket.website.id
-  key          = "website/index.html"
-  source       = "website/index.html"  
+  key          = "index.html"  
+  source       = "../website/index.html"  
   content_type = "text/html"
   acl          = "public-read"
 }

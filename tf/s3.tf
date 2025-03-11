@@ -28,6 +28,14 @@ resource "aws_s3_bucket_public_access_block" "website" {
   restrict_public_buckets = false
 }
 
+resource "aws_s3_bucket_ownership_controls" "website" {
+  bucket = aws_s3_bucket.website.id
+
+  rule {
+    object_ownership = "ObjectWriter"
+  }
+}
+
 resource "aws_s3_bucket_policy" "website" {
   bucket = aws_s3_bucket.website.id
   policy = <<POLICY

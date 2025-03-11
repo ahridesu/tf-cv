@@ -35,15 +35,26 @@ resource "aws_s3_bucket_policy" "website" {
   "Version": "2012-10-17",
   "Statement": [
     {
-      "Sid": "PublicReadGetObject",
       "Effect": "Allow",
       "Principal": "*",
       "Action": [
         "s3:GetObject",
-        "s3:PutBucketPolicy"
       ],
       "Resource": "arn:aws:s3:::cv-website-project/*"
-    }
+    },
+    {
+      "Effect": "Allow",
+      "Principal": {
+        "AWS":"arn:aws:iam::209479300792:user/cv-website-user"
+      },
+      "Action": [
+        "s3:PutObject",
+        "s3:GetObject",
+        "s3:DeleteObject",
+      ],
+      "Resource": "arn:aws:s3:::cv-website-project/*"
+    },
+
   ]
 }
 POLICY

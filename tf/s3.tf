@@ -38,7 +38,10 @@ resource "aws_s3_bucket_policy" "website" {
       "Sid": "PublicReadGetObject",
       "Effect": "Allow",
       "Principal": "*",
-      "Action": "s3:GetObject",
+      "Action": [
+        "s3:GetObject",
+        "s3:PutBucketPolicy"
+      ],
       "Resource": "arn:aws:s3:::cv-website-project/*"
     }
   ]
@@ -48,8 +51,8 @@ POLICY
 
 resource "aws_s3_object" "index" {
   bucket       = aws_s3_bucket.website.id
-  key          = "index.html"
-  source       = "index.html"  
+  key          = "website/index.html"
+  source       = "website/index.html"  
   content_type = "text/html"
   acl          = "public-read"
 }

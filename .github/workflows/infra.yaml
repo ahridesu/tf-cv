@@ -34,7 +34,7 @@ jobs:
         working-directory: ./tf
 
       - name: Terraform Validate
-        run: terraform Validate
+        run: terraform validate
         working-directory: ./tf
 
       - name: Terraform Plan

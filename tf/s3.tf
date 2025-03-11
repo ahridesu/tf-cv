@@ -57,6 +57,8 @@ resource "aws_s3_object" "index" {
   bucket       = aws_s3_bucket.website.id
   key          = each.value  
   source       = "../website/${each.value}"
-  content_type = mime_type("../website/${each.value}")
-
+  content_type     = lookup(local.content_types, element(split(".", each.value), length(split(".", each.value)) - 1), "text/plain")
+  content_encoding = "utf-8"
 }
+
+

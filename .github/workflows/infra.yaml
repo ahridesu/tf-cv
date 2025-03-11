@@ -30,14 +30,18 @@ jobs:
           aws-region: eu-west-1
 
       - name: Terraform Init
-        run: terraform init
+        run: terraform init ./tf/
+        working-directory: ./tf
 
       - name: Terraform Validate
-        run: terraform validate
+        run: terraform Validate
+        working-directory: ./tf
 
       - name: Terraform Plan
         run: terraform plan
+        working-directory: ./tf
 
       - name: Terraform Apply
         run: terraform apply -auto-approve
         if: github.ref == 'refs/heads/main'
+        working-directory: ./tf

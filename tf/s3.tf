@@ -71,5 +71,5 @@ resource "aws_s3_object" "index" {
   bucket       = aws_s3_bucket.website.id
   key          = each.value  
   source       = "../website/${each.value}"
-  acl          = public-read
+  acl          = "public-read"
 }

@@ -58,9 +58,5 @@ resource "aws_s3_object" "index" {
   key          = each.value  
   source       = "../website/${each.value}"
 
-  content_type = lookup({
-    "html" = "text/html",
-    "css"  = "text/css",
-    "js"   = "application/javascript"
-  }, substr(each.value, length(each.value)-2, 3), "application/octet-stream")
+  content_type = "text/html"
 }

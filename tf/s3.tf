@@ -1,5 +1,5 @@
 resource "aws_s3_bucket" "website" {
-  bucket = "cv-website"  
+  bucket = "cv-website-project"  
 
   tags = {
     Name        = "staticbucket"
@@ -39,7 +39,7 @@ resource "aws_s3_bucket_policy" "website" {
       "Effect": "Allow",
       "Principal": "*",
       "Action": "s3:GetObject",
-      "Resource": "arn:aws:s3:::cv-website/*"
+      "Resource": "arn:aws:s3:::cv-website-project/*"
     }
   ]
 }

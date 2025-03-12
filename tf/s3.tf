@@ -1,5 +1,5 @@
 resource "aws_s3_bucket" "website" {
-  bucket = "cv-website-project"  
+  bucket = "cv-ariana-goncalves"  
 
   tags = {
     Name        = "staticbucket"

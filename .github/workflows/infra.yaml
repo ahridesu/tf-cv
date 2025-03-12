@@ -3,10 +3,10 @@ name: Deploy Infrastructure
 on:
   push:
     branches:
-      - main 
+      - terraform-destroy 
   pull_request:
     branches:
-      - main
+      - terraform-destroy 
 
 jobs:
   terraform:
@@ -33,15 +33,7 @@ jobs:
         run: terraform init
         working-directory: ./tf
 
-      - name: Terraform Validate
-        run: terraform validate
-        working-directory: ./tf
-
-      - name: Terraform Plan
-        run: terraform plan
-        working-directory: ./tf
-
-      - name: Terraform Apply
-        run: terraform apply -auto-approve
+      - name: Terraform Destroy
+        run: terraform destroy -auto-approve
         if: github.ref == 'refs/heads/main'
         working-directory: ./tf

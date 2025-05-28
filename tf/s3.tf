@@ -82,16 +82,3 @@ resource "aws_cloudfront_origin_access_control" "website_oac" {
   signing_protocol                   = "sigv4"
   origin_access_control_origin_type = "s3"
 }
-
-locals {
-  content_types = {
-    html = "text/html"
-    css  = "text/css"
-    js   = "application/javascript"
-    png  = "image/png"
-    jpg  = "image/jpeg"
-    jpeg = "image/jpeg"
-    svg  = "image/svg+xml"
-    ico  = "image/x-icon"
-  }
-}

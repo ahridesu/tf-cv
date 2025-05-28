@@ -1,10 +1,14 @@
 locals {
-    content_types = {
-    css  = "text/css"
+  content_types = {
     html = "text/html"
+    css  = "text/css"
     js   = "application/javascript"
-    woff = "font/woff"
     png  = "image/png"
+    jpg  = "image/jpeg"
+    jpeg = "image/jpeg"
+    svg  = "image/svg+xml"
+    ico  = "image/x-icon"
+    woff = "font/woff"
     pdf  = "application/pdf"
     txt  = "text/plain"
   }
